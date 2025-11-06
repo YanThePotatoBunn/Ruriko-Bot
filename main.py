@@ -68,15 +68,18 @@ farewell_gif = [
 async def on_ready():
     print("I'm Readyyy")
 
+
 @bot.event
 async def on_message(message):
     if message.author == bot.user:
         return
-    
-    if "hello ruriko" in message.content.lower():
+
+    msg = message.content.lower()
+
+    if "hello ruriko" in msg:
         await message.channel.send(f"konnichiwa {message.author.mention}! How have you been")
 
-    elif any(word in message.content.lower() for word in ["fine", "okay", "good", "alright"]):
+    elif any(word in msg for word in ["fine", "okay", "good", "alright"]):
         await message.channel.send("I'm glad to hear that! 🌸")
 
     await bot.process_commands(message)
@@ -150,6 +153,7 @@ async def gacha(ctx):
 
 
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
+
 
 
 
