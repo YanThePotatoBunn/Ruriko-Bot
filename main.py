@@ -98,7 +98,7 @@ async def on_member_remove(member):
         colour=Colour.from_rgb(255, 153, 204)
         )
         embed.set_thumbnail(url=member.display_avatar.url)
-        embed.set_image(random_gif_bye)
+        embed.set_image(url=random_gif_bye)
         await channel.send(embed=embed)
 
 
@@ -128,3 +128,4 @@ async def gacha(ctx):
     await roll_message.edit(content=f"🎉 Wow {ctx.author.mention}, you got **{final_item}**! 🎉")
 
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
+
