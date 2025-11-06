@@ -76,7 +76,7 @@ async def on_message(message):
     if "hello ruriko" in message.content.lower():
         await message.channel.send(f"konnichiwa {message.author.mention}! How have you been")
 
-    if any(word in message.content.lower() for word in ["fine", "okay", "good", "alright"]):
+    elif any(word in message.content.lower() for word in ["fine", "okay", "good", "alright"]):
         await message.channel.send("I'm glad to hear that! 🌸")
 
     await bot.process_commands(message)
@@ -137,17 +137,20 @@ async def hello(ctx):
 @bot.command()
 async def gacha(ctx):
     roll_message = await ctx.send(f"🎰 Rolling the gacha for {ctx.author.mention}...")
-   # simulate spin
-    for i in range(5):  # number of spins
-        item = random.choice(gacha_list)
-        await roll_message.edit(content=f"✨ Rolling... {item} ✨")
-        await asyncio.sleep(0)  # delay between rolls
+    
+    final_item = None  # prepare variable
 
-    # final result
-    final_item = random.choice(gacha_list)
+    for i in range(5):  # simulate spins
+        final_item = random.choice(gacha_list)
+        await roll_message.edit(content=f"✨ Rolling... {final_item} ✨")
+        await asyncio.sleep(1)  # add small delay (1 sec looks nice)
+
+    # use the *last rolled item* as the final result
     await roll_message.edit(content=f"🎉 Wow {ctx.author.mention}, you got **{final_item}**! 🎉")
 
+
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
+
 
 
 
