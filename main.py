@@ -7,7 +7,21 @@ import os
 import random
 import asyncio
 
+# flask
+from flask import Flask
+from threading import Thread
 
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "I'm alive"
+
+def run():
+    app.run(host='0.0.0.0', port=8080)
+
+Thread(target=run).start()
+#--------------------------------------------------
 load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
 
@@ -43,8 +57,8 @@ farewell_gif = [
     "https://www.gif-vif.com/trending/hayato-yuzuki-money-goes-bye-bye.gif",
     "https://www.mondieu.nu/adore/wp-content/uploads/2019/01/bye.gif",
 ]
-random_gif_welcome = random.choice(welcome_gif)
-random_gif_bye = random.choice(welcome_gif)
+
+
 
 #---------------------------------------------------------------------------------------------------------
 #      Bot-Events
@@ -72,6 +86,8 @@ async def on_member_join(member):
     channel = bot.get_channel(channel_id)
 
     if channel:
+        random_gif_welcome = random.choice(welcome_gif)
+
         embed = Embed(
             title = "Welcome ~ 🌸",
             description=(
@@ -90,6 +106,8 @@ async def on_member_remove(member):
     channel = bot.get_channel(channel_id)
 
     if channel:
+        random_gif_bye = random.choice(welcome_gif)
+        
         embed = Embed(
             title = "Farewell ~ 🌸",
             description=(
@@ -128,4 +146,5 @@ async def gacha(ctx):
     await roll_message.edit(content=f"🎉 Wow {ctx.author.mention}, you got **{final_item}**! 🎉")
 
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
+
 
