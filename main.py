@@ -106,8 +106,8 @@ async def on_member_remove(member):
     channel = bot.get_channel(channel_id)
 
     if channel:
-        random_gif_bye = random.choice(welcome_gif)
-        
+        random_gif_bye = random.choice(farewell_gif)
+
         embed = Embed(
             title = "Farewell ~ 🌸",
             description=(
@@ -146,5 +146,6 @@ async def gacha(ctx):
     await roll_message.edit(content=f"🎉 Wow {ctx.author.mention}, you got **{final_item}**! 🎉")
 
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
+
 
 
