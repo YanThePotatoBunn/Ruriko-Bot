@@ -113,10 +113,11 @@ async def on_message(message):
         return
 
     msg = message.content.lower()
-    if profanity_list[] in message:
-        await message.remove()
-        await message.channel.send(f"Please don't use those kind of words{message.author.mention}( ｡ﾟДﾟ｡)")
-        return
+    if any(word in msg for word in profanity_list):
+        await message.delete()  # use delete(), not remove()
+        await message.channel.send(
+            f"🚫 Please don't use those kinds of words, {message.author.mention}! (｡ﾟДﾟ｡)"
+        )
     if "hello ruriko" in msg:
         await message.channel.send(f"konnichiwa {message.author.mention}! How have you been")
 
@@ -194,6 +195,7 @@ async def gacha(ctx):
 
 
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
+
 
 
 
