@@ -53,9 +53,8 @@ profanity_list = [
 
     # Hate Speech / Slurs
     "nigger", "nigga", "faggot", "fag", "tranny", "retarded", "retard",
-    "gay (used insultingly)", "lesbian (used insultingly)", "queer (used insultingly)",
-    "chink", "jap (racial)", "spic", "k*ke", "white trash",
-    "monkey (racial)", "terrorist",
+    "chink", "spic", "k*ke", "white trash",
+    , "terrorist",
 
     # Explicit / NSFW / Lewd Terms
     "sex", "porn", "hentai", "nude", "nudes", "boobs", "tits", "cock",
@@ -68,9 +67,9 @@ profanity_list = [
     "anorexic", "bulimic",
 
     # Insults / Harassment Phrases
-    "you suck", "you’re ugly", "loser", "stupid kid", "shut up", "no one cares",
-    "kill yourself", "kys", "nobody asked", "worthless", "pathetic", "cringe",
-    "go die", "trash", "disgusting",
+    "you suck", "you’re ugly", "loser", "stupid kid" , "no one cares",
+    "kill yourself", "kys", "worthless", "pathetic", "cringe",
+    "go die", "disgusting",
 
     # Link / Spam Filter
     "discord.gg", "bit.ly", "tinyurl", "ad.fly", "free-nitro", "nitrofree",
@@ -193,8 +192,9 @@ async def gacha(ctx):
     # use the *last rolled item* as the final result
     await roll_message.edit(content=f"🎉 Wow {ctx.author.mention}, you got **{final_item}**! 🎉")
 
-
+#!rule
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
+
 
 
 
