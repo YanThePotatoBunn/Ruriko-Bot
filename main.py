@@ -39,6 +39,44 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 gacha_list = ["100 years of good luck", "Piece of Dust" , "10000 ROCKS",
 "A WILD TAKO" , "KAMALASAN HANGGANG SECOND LIFE"]
 
+profanity_list = [
+    # Profanity / Curse Words (General English)
+    "fuck", "f*ck", "f@ck", "fck", "shit", "sh*t", "sh!t", "damn", "d*mn",
+    "a-hole", "asshole", "a**hole", "b*tch", "bitch", "bastard", "son of a bitch",
+    "mf", "motherf*cker", "suck", "sucks", "sucks ass", "stupid", "idiot",
+    "dumbass", "jackass", "crap",
+
+    # Tagalog / Filipino Profanity
+    "p*t*", "p**a", "p#ta", "puta", "putangina", "t*ng*na", "tangina",
+    "g*go", "gago", "g*ga", "bobo", "tanga", "ulol", "bwisit", "leche",
+    "lintik", "gagi", "hayop ka", "amp", "amputa",
+
+    # Hate Speech / Slurs
+    "nigger", "nigga", "faggot", "fag", "tranny", "retarded", "retard",
+    "gay (used insultingly)", "lesbian (used insultingly)", "queer (used insultingly)",
+    "chink", "jap (racial)", "spic", "k*ke", "white trash",
+    "monkey (racial)", "terrorist",
+
+    # Explicit / NSFW / Lewd Terms
+    "sex", "porn", "hentai", "nude", "nudes", "boobs", "tits", "cock",
+    "penis", "vagina", "pussy", "cum", "orgasm", "fap", "jerk off", "suck off",
+    "nhentai", "rule34", "pornhub", "xvideos", "xhamster",
+
+    # Sensitive / Triggering Topics
+    "suicide", "kill myself", "kms", "self harm", "cutter", "die", "i want to die",
+    "depression (used in jokes)", "go kill yourself", "kys", "trigger warning (mock use)",
+    "anorexic", "bulimic",
+
+    # Insults / Harassment Phrases
+    "you suck", "you’re ugly", "loser", "stupid kid", "shut up", "no one cares",
+    "kill yourself", "kys", "nobody asked", "worthless", "pathetic", "cringe",
+    "go die", "trash", "disgusting",
+
+    # Link / Spam Filter
+    "discord.gg", "bit.ly", "tinyurl", "ad.fly", "free-nitro", "nitrofree",
+    "gift-nitro", "steamgift", "scam", "click-here", "giveawaybot", "phishing"
+]
+
 for i in range(30):
     print(random.choice(gacha_list))
 
@@ -75,7 +113,10 @@ async def on_message(message):
         return
 
     msg = message.content.lower()
-
+    if profanity_list[] in message:
+        await message.remove()
+        await message.channel.send(f"Please don't use those kind of words{message.author.mention}( ｡ﾟДﾟ｡)")
+        return
     if "hello ruriko" in msg:
         await message.channel.send(f"konnichiwa {message.author.mention}! How have you been")
 
@@ -153,6 +194,7 @@ async def gacha(ctx):
 
 
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
+
 
 
 
